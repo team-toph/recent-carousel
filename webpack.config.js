@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: './client/App.jsx',
+  entry: './client/index.jsx',
   mode: 'development',
   watch: true,
   output: {

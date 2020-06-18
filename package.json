@@ -4,7 +4,10 @@
   "description": "Recently Viewed",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server-dev": "nodemon server/index.js",
+    "react-dev": "webpack -d --watch",
+    "db-setup": "node database/seed.js"
   },
   "repository": {
     "type": "git",
@@ -17,8 +20,10 @@
   },
   "homepage": "https://github.com/Team-Katara/Shraya-Service#readme",
   "dependencies": {
+    "@babel/preset-react": "^7.10.1",
     "express": "^4.17.1",
     "jest": "^26.0.1",
+    "mongo-uri": "^0.1.2",
     "mongodb": "^3.5.9",
     "mongoose": "^4.13.20",
     "nodemon": "^2.0.4",
