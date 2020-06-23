@@ -22,10 +22,12 @@
   "dependencies": {
     "@babel/preset-react": "^7.10.1",
     "express": "^4.17.1",
+    "faker": "^4.1.0",
     "jest": "^26.0.1",
     "mongo-uri": "^0.1.2",
     "mongodb": "^3.5.9",
     "mongoose": "^4.13.20",
+    "node": "^14.4.0",
     "nodemon": "^2.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"

@@ -15,7 +15,7 @@ app.get('/', function(req, res) {
   res.send('Hello World!')
 });
 
-app.get('/api/viewedItems', function(req, res) {
+app.get('/api/recentlyViewed', function(req, res) {
   Views.find(function(err, data) {
     if (err) {
       console.log('get error in server', err);
