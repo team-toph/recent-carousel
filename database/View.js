@@ -3,10 +3,11 @@ const db = require('./index.js');
 mongoose.Promise = global.Promise;
 
 const viewSchema = new mongoose.Schema({
+  id: Number,
   name: String,
   imageUrl: String,
   cost: Number,
-  reviews: Number,
+  ratings: Number,
   reviewsCount: Number
 });
 
