@@ -15,21 +15,24 @@ app.use(express.static(__dirname + '/../dist'));
 //   res.send('Hello World!')
 // });
 
-app.get('/api/bought', function(req, res) {
-  View.find(function(err, data) {
-    if (err) {
-      console.log('get error in server', err);
-    } else {
-      res.status(200).json(data);
-    }
-  })
-})
-// app.get('/api/bought/:id', function(req, res) {
-//   View.find({id: req.params.id})
-//     .then((data) => {
-//       res.status(200).send(data);
-//     });
+// app.get('/api/products', function(req, res) {
+//   View.find(function(err, data) {
+//     if (err) {
+//       console.log('get error in server', err);
+//     } else {
+//       res.status(200).json(data);
+//     }
+//   })
 // })
+
+app.get('/api/products', function(req, res) {
+  const id = req.query.id;
+  View.find({id: id})
+    .then((data) => {
+      res.status(200).json(data);
+    })
+});
+
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);

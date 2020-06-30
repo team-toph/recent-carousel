@@ -28,29 +28,34 @@ var imagesArray = [
   'https://picsum.photos/id/454/160/160/',
   'https://picsum.photos/id/486/160/160/',
 ]
-
 var makeid = 1;
 
 const generateData = function() {
   var data = [];
+  var randomized = Math.floor(Math.random() * imagesArray.length);
 
-  var randomized = Math.floor(Math.random() * imagesArray.length)
+  var products = [];
 
-  var randomName = faker.commerce.productName();
-  var randomUrl = imagesArray[randomized];
-  var randomCost = faker.commerce.price();
-  var randomRatings = Math.floor(Math.random() * 5);
-  var randomReviewsCount = Math.floor(Math.random() * 100)
+  for (var j = 0; j < 8; j++) {
+    var randomName = faker.commerce.productName();
+    var randomUrl = imagesArray[randomized];
+    var randomCost = faker.commerce.price();
+    var randomRatings = Math.floor(Math.random() * 5);
+    var randomReviewsCount = Math.floor(Math.random() * 100)
 
+    var productEntry = {
+      name: randomName,
+      imageUrl: randomUrl,
+      cost: randomCost,
+      ratings: randomRatings,
+      reviewsCount: randomReviewsCount
+    };
+    products.push(productEntry);
+  }
   var entry = {
     id: makeid,
-    name: randomName,
-    imageUrl: randomUrl,
-    cost: randomCost,
-    ratings: randomRatings,
-    reviewsCount: randomReviewsCount
+    product: products,
   }
-
   data.push(entry);
   return data;
 };
@@ -58,10 +63,9 @@ const generateData = function() {
 const insertSampleData = function() {
   var count = 0;
   while(count < 100) {
-      View.create(generateData())
-      count++
-      makeid++
-      // .then(() => db.disconnect());
+    View.create(generateData())
+    count++
+    makeid++
   }
 };
 
