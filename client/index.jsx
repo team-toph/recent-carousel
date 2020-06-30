@@ -13,13 +13,6 @@ class App extends React.Component {
     }
   }
   componentDidMount() {
-    // axios.get('http://localhost:3000/api/bought')
-    // .then((response) => {
-    //   console.log(response.data);
-    //   this.setState ({
-    //     data: response.data,
-    //   })
-    // })
     const url = new URLSearchParams(window.location.search.substring(1));
     const params = url.get('id');
 
