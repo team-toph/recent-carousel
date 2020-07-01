@@ -89,9 +89,8 @@ class Carousel extends React.Component {
                   </div>
                 </div>
               )
-            })
+              })
             )
-
           })
         }
       <Button id="left" onClick={this.left}><i class="fas fa-chevron-left fa-2x"></i></Button>

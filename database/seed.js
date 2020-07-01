@@ -8,9 +8,10 @@ const generateData = function() {
   var data = [];
 
   var createImage = function() {
-    var url = 'http://picsum.photos/160/160?random='
+    var url = 'http://picsum.photos/id/'
+    var urlend='/160/160'
     var randomNumber = Math.floor(Math.random() * 200);
-    return url+randomNumber;
+    return url+randomNumber+urlend;
   }
 
   var products = [];
