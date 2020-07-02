@@ -58,7 +58,7 @@ class Carousel extends React.Component {
   render() {
     return (
       <div className= "all">
-        <div className = "carousel">
+        <div className = "shrayaCarousel">
           <div className = "title">
             <Title>Customers Who Viewed This Item Ultimately Bought</Title>
           </div>
