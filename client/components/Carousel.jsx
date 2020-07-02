@@ -57,45 +57,77 @@ class Carousel extends React.Component {
 
   render() {
     return (
-      <div className = "carousel">
-        <div className = "title">
-          <Title>Customers Who Viewed This Item Ultimately Bought</Title>
-        </div>
-        {
-          this.props.data.map((item, index) => {
-            if (item.id > 20 && item.id < 32) {
-              return(
-                <div key={index} className="slide" style={{transform: `translateX(${this.state.x}%)`}}>
-                  <div className="information">
-                    <img src={item.imageUrl} clasName= "image"></img>
-                    <div className="bottom">
-                      <div className="hover">Quickview</div>
+      <div className= "all">
+        <div className = "carousel">
+          <div className = "title">
+            <Title>Customers Who Viewed This Item Ultimately Bought</Title>
+          </div>
+          {
+            this.props.data.map((item) => {
+              return (
+                item.product.map((info) => {
+                console.log('name', info.imageUrl)
+                return(
+                  <div className="slide" style={{transform: `translateX(${this.state.x}%)`}}>
+                    <div className="information">
+                      <img src={info.imageUrl} clasName= "image"></img>
+                      <div className="bottom">
+                        <div className="hover">Quickview</div>
+                      </div>
+                      <Name>{info.name}</Name>
+                      <Cost>${info.cost}.99</Cost>
+                      <p>
+                        <StarRatings
+                          rating= {info.ratings}
+                          starRatedColor= '#F0DD60'
+                          numberOfStars={5}
+                          name='rating'
+                          starDimension= "15px"
+                          starSpacing= "2px"
+                          />
+                          <Count>({info.reviewsCount})</Count>
+                      </p>
                     </div>
-                    <Name>{item.name}</Name>
-                    <Cost>${item.cost}.99</Cost>
-                    <p>
-                      <StarRatings
-                        rating= {item.ratings}
-                        starRatedColor= '#F0DD60'
-                        numberOfStars={5}
-                        name='rating'
-                        starDimension= "15px"
-                        starSpacing= "2px"
-                        />
-                        <Count>({item.reviewsCount})</Count>
-                    </p>
                   </div>
-                </div>
+                )
+                })
               )
-            }
-          })
-        }
-
-      <Button id="left" onClick={this.left}><i class="fas fa-chevron-left fa-2x"></i></Button>
-      <Button id="right" onClick={this.right}><i class="fas fa-chevron-right fa-2x"></i></Button>
+            })
+          }
+        <Button id="left" onClick={this.left}><i class="fas fa-chevron-left fa-2x"></i></Button>
+        <Button id="right" onClick={this.right}><i class="fas fa-chevron-right fa-2x"></i></Button>
+        </div>
       </div>
     )
   }
 }
 
 export default Carousel;
+
+
+// item.product.map((info, index) => {
+//   console.log('name', info.name)
+//   return(
+//     <div key={index} className="slide" style={{transform: `translateX(${this.state.x}%)`}}>
+//       <div className="information">
+//         <img src={info.imageUrl} clasName= "image"></img>
+//         <div className="bottom">
+//           <div className="hover">Quickview</div>
+//         </div>
+//         <Name>{info.name}</Name>
+//         <Cost>${info.cost}.99</Cost>
+//         <p>
+//           <StarRatings
+//             rating= {info.ratings}
+//             starRatedColor= '#F0DD60'
+//             numberOfStars={5}
+//             name='rating'
+//             starDimension= "15px"
+//             starSpacing= "2px"
+//             />
+//             <Count>({info.reviewsCount})</Count>
+//         </p>
+//       </div>
+//     </div>
+//   )
+// })

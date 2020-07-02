@@ -4,32 +4,26 @@ const View = require('../database/View.js');
 const db = require('../database/index');
 
 const app = express();
-const PORT = 3000;
+const PORT = 3003;
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 app.use(express.static(__dirname + '/../dist'));
 
-// app.get('/', function(req, res) {
-//   res.send('Hello World!')
-// });
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
 
-app.get('/api/bought', function(req, res) {
-  View.find(function(err, data) {
-    if (err) {
-      console.log('get error in server', err);
-    } else {
+app.get('/api/products', function(req, res) {
+  const id = req.query.id;
+  View.find({id: id})
+    .then((data) => {
       res.status(200).json(data);
-    }
-  })
-})
-// app.get('/api/bought/:id', function(req, res) {
-//   View.find({id: req.params.id})
-//     .then((data) => {
-//       res.status(200).send(data);
-//     });
-// })
+    })
+});
+
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
