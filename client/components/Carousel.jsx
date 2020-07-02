@@ -79,7 +79,7 @@ class Carousel extends React.Component {
                       <p>
                         <StarRatings
                           rating= {info.ratings}
-                          starRatedColor= '#F0DD60'
+                          starRatedColor= 'gold'
                           numberOfStars={5}
                           name='rating'
                           starDimension= "15px"
