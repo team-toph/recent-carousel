@@ -1,4 +1,4 @@
-const db  = require('./index.js');
+const db = require('./index.js');
 const View = require('./View.js');
 const faker = require('faker');
 
@@ -90,7 +90,7 @@ var imagesArray = [
   'https://shrayafec.s3-us-west-1.amazonaws.com/S3/209-160x160.jpg',
   'https://shrayafec.s3-us-west-1.amazonaws.com/S3/21-160x160.jpg',
   'https://shrayafec.s3-us-west-1.amazonaws.com/S3/210-160x160.jpg',
-]
+];
 
 var makeid = 1;
 
@@ -98,9 +98,9 @@ const generateData = function() {
   var data = [];
 
   var createImage = function() {
-    var randomized = Math.floor(Math.random() * imagesArray.length)
+    var randomized = Math.floor(Math.random() * imagesArray.length);
     return imagesArray[randomized];
-  }
+  };
 
   var products = [];
 
@@ -109,7 +109,7 @@ const generateData = function() {
     var randomUrl = createImage();
     var randomCost = faker.commerce.price();
     var randomRatings = Math.floor(Math.random() * 6);
-    var randomReviewsCount = Math.floor(Math.random() * 100)
+    var randomReviewsCount = Math.floor(Math.random() * 100);
 
     var productEntry = {
       name: randomName,
@@ -122,18 +122,18 @@ const generateData = function() {
   }
   var entry = {
     id: makeid,
-    product: products,
-  }
+    product: products
+  };
   data.push(entry);
   return data;
 };
 
 const insertSampleData = function() {
   var count = 0;
-  while(count < 100) {
-    View.create(generateData())
-    count++
-    makeid++
+  while (count < 100) {
+    View.create(generateData());
+    count++;
+    makeid++;
   }
 };
 
