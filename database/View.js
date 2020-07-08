@@ -10,7 +10,7 @@ const viewSchema = new mongoose.Schema({
     cost: Number,
     ratings: Number,
     reviewsCount: Number
-    }]
+  }]
 });
 
 const View = mongoose.model('View', viewSchema);

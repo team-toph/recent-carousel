@@ -11,7 +11,7 @@ const app = require('../server/index.js');
 const mongoose = require('mongoose');
 
 describe('Test to see if api endpoint / works', () => {
-  test('It should recieve a status code of 200', async () => {
+  test('It should recieve a status code of 200', () => {
     return request(app)
       .get('/')
       .then(response => {
@@ -21,7 +21,7 @@ describe('Test to see if api endpoint / works', () => {
 });
 
 describe('Test to see if api endpoint /recentlyViewed works', () => {
-  test('It should recieve a status code of 200', async () => {
+  test('It should recieve a status code of 200', () => {
     return request(app)
       .get('/')
       .then(response => {
