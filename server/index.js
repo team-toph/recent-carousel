@@ -24,6 +24,13 @@ app.get('/api/products', function(req, res) {
     })
 });
 
+app.put('/api/products', (req, res) => {
+  var id = req.query.id;
+  View.findOneAndUpdate({id: id}, req.body, {new: true})
+    .then((results) => {
+      res.status(200).json(results._doc);
+    })
+})
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
