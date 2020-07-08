@@ -16,6 +16,14 @@ app.use((req, res, next) => {
   next();
 });
 
+app.post('/api/products', (req, res) => {
+  req.body.id = req.query.id;
+  View.create(req.body)
+    .then((results) => {
+      res.status(201).json(results._doc);
+    })
+})
+
 app.get('/api/products', function(req, res) {
   const id = req.query.id;
   View.find({id: id})
