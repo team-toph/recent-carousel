@@ -6,10 +6,9 @@ module.exports = (callback, cb2) => {
   stream.on('data', (chunk) => {
     items = items.concat((leftover + chunk.toString()).split('\r\n'));
     leftover = items.pop();
-    for (let i = 0; i < items.length; i++) {
-      callback(JSON.parse(items[i]));
+    while (items.length > 0) {
+      callback(JSON.parse(items.pop()));
     }
-    items = [];
   });
 
   stream.on('end', () => {

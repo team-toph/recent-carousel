@@ -18,6 +18,8 @@ var Product = sequelize.define('product', {
 
 Item.hasMany(Product);
 
-sequelize.sync({ force: true });
+// (async () => {
+//   await sequelize.sync({ force: true });
+// })();
 
 module.exports = { Item, Product, sequelize };
