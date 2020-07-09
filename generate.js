@@ -16,12 +16,23 @@ const generateData = function(makeid) {
   return {id: makeid, product: products};
 };
 
-for (let i = 0; i < 10; i++) {
-  var stream = fs.createWriteStream('./data.txt', {flags: 'a'});
-  for (let j = 0; j < 10; j++) {
-    stream.write(JSON.stringify(generateData(i * 10 + j)) + '\r\n');
+var start = Date.now();
+var stream = fs.createWriteStream('./data.txt', {flags: 'a'});
+var count = 0;
+var max = 10000000
+var write = () => {
+  var ready = true;
+  while (count < max && ready) {
+    ready = stream.write(JSON.stringify(generateData(count)) + '\r\n');
+    count++;
   }
-  stream.end();
+  if (count < max) {
+    stream.once('drain', write);
+  } else {
+    stream.end();
+    console.log('Time to write: ', Date.now() - start);
+  }
 }
+write();
 
 module.exports = generateData;
