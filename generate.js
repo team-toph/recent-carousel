@@ -17,9 +17,9 @@ const generateData = function(makeid) {
 };
 
 var start = Date.now();
-var stream = fs.createWriteStream('./data.txt', {flags: 'a'});
+var stream = fs.createWriteStream('./data2.txt', {flags: 'a'});
 var count = 0;
-var max = 10000000;
+var max = 100;
 var write = () => {
   var ready = true;
   while (count < max && ready) {
