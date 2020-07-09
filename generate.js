@@ -19,7 +19,7 @@ const generateData = function(makeid) {
 var start = Date.now();
 var stream = fs.createWriteStream('./data.txt', {flags: 'a'});
 var count = 0;
-var max = 10000000
+var max = 10000000;
 var write = () => {
   var ready = true;
   while (count < max && ready) {
@@ -32,7 +32,7 @@ var write = () => {
     stream.end();
     console.log('Time to write: ', Date.now() - start);
   }
-}
+};
 write();
 
 module.exports = generateData;
