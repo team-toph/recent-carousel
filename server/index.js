@@ -26,8 +26,10 @@ app.post('/api/products', (req, res) => {
 
 app.get('/api/products', function(req, res) {
   const id = req.query.id;
+  var start = Date.now();
   View.find({id: id})
     .then((data) => {
+      console.log('Time to fetch from db: ', Date.now() - start);
       res.status(200).json(data);
     });
 });
