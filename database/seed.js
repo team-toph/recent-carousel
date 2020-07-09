@@ -122,7 +122,7 @@ const generateData = function() {
   }
   var entry = {
     id: makeid,
-    product: products,
+    product: products
   };
   data.push(entry);
   return data;
