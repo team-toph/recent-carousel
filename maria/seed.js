@@ -4,33 +4,52 @@ var { sequelize, Item, Product } = require('./index.js');
 var done = false;
 var start = Date.now();
 
-var items = [];
-var products = [];
+var paused = false;
 
-read((item) => {
+read((items, callback) => {
+  var products = [];
   // console.log(item.id);
-  Item.create({ id: item.id + 1 })
+  items.forEach((item) => {
+    item.product.forEach((product) => {
+      product.itemId = item.id;
+      products.push(product);
+    });
+  });
+  Item.bulkCreate(items)
     .then(() => {
-      item.product.forEach((thing) => {
-        thing.itemId = item.id + 1;
-        products.push(thing);
-      });
-      if (item.id >= 9999) {
-        Product.bulkCreate(products)
-        .then(() => {
-          if (item.id >= 9999) {
-            console.log('Done adding, time taken: ', Date.now() - start);
-            sequelize.close();
-          }
-        })
-        .catch((err) => {
-          console.log('Error bulk adding');
-        });
+      return Product.bulkCreate(products);
+    })
+    .then(() => {
+      console.log(`Added ${items.length} items. Total time: ${Date.now() - start}ms`);
+      callback();
+      if (done) {
+        console.log(`Time to add all: ${Date.now() - start}ms`);
+        sequelize.close();
       }
     })
     .catch((err) => {
-      console.log('Error adding: ', item.id);
+      console.log(err);
     })
+  // items.push(item);
+  // item.product.forEach((thing) => {
+  //   thing.itemId = item.id;
+  //   products.push(thing);
+  // });
+  // if (items.length >= 10 && !paused) {
+  //   callback(true);
+  //   Item.bulkCreate(items)
+  //   //  .then(() => {
+  //   //    return Product.bulkCreate(products);
+  //   //   })
+  //     .then(() => {
+  //       console.log('Done adding 10k, time taken: ', Date.now() - start);
+  //       items = [];
+  //       callback(false);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err.code);
+  //     })
+  // }
 }, () => {
   done = true;
 });

@@ -18,11 +18,11 @@ const generateData = function(makeid) {
 
 var start = Date.now();
 var stream = fs.createWriteStream('./data2.txt', {flags: 'a'});
-var count = 0;
-var max = 10000;
+var count = 1;
+var max = 100000;
 var write = () => {
   var ready = true;
-  while (count < max && ready) {
+  while (count <= max && ready) {
     ready = stream.write(JSON.stringify(generateData(count)) + '\r\n');
     count++;
   }
