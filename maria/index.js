@@ -4,7 +4,7 @@ var sequelize = new Sequelize('SDC', user, pass, {
   host: 'localhost',
   dialect: 'mariadb',
   logging: false
-})
+});
 var modelOptions = { timestamps: false };
 
 var Item = sequelize.define('item', {}, modelOptions);
@@ -15,7 +15,7 @@ var Product = sequelize.define('product', {
   name: DataTypes.STRING,
   ratings: DataTypes.INTEGER,
   reviewsCount: DataTypes.INTEGER
-}, modelOptions)
+}, modelOptions);
 
 Item.hasMany(Product);
 
