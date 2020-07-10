@@ -2,7 +2,8 @@ var { Sequelize, DataTypes } = require('sequelize');
 var { user, pass } = require('./config.js');
 var sequelize = new Sequelize('SDC', user, pass, {
   host: 'localhost',
-  dialect: 'mariadb'
+  dialect: 'mariadb',
+  logging: false
 })
 var modelOptions = { timestamps: false };
 
