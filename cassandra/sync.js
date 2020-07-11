@@ -8,7 +8,7 @@ var db = new cassandra.Client({
 
 db.execute('drop table if exists items')
   .then(() => {
-    return db.execute(`drop type if exists product`)
+    return db.execute('drop type if exists product');
   })
   .then(() => {
     return db.execute(`CREATE TYPE product (
