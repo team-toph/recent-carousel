@@ -1,10 +1,6 @@
 var cassandra = require('cassandra-driver');
 
-var db = new cassandra.Client({
-  contactPoints: ['127.0.0.1'],
-  localDataCenter: 'datacenter1',
-  keyspace: 'items'
-});
+var db = require('./index.js');
 
 db.execute('drop table if exists items')
   .then(() => {

@@ -26,7 +26,7 @@ var write = () => {
     ready = stream.write(JSON.stringify(generateData(count)) + '\r\n');
     count++;
   }
-  if (count < max) {
+  if (count <= max) {
     stream.once('drain', write);
   } else {
     stream.end();

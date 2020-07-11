@@ -7,7 +7,7 @@ module.exports = (callback, cb2) => {
   var leftover = '';
   stream.on('data', (chunk) => {
     chunks.push(chunk);
-    if (chunks.length > 300) {
+    if (chunks.length = 1) {
       stream.pause();
       items = chunks.reduce((acc, chunk) => {
         return acc + chunk;
