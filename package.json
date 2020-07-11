@@ -22,6 +22,7 @@
   "dependencies": {
     "@babel/preset-react": "^7.10.1",
     "axios": "^0.19.2",
+    "cassandra-driver": "^4.5.2",
     "eslint-config-hackreactor": "github:reactorcore/eslint-config-hackreactor",
     "express": "^4.17.1",
     "faker": "^4.1.0",
