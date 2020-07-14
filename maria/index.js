@@ -19,8 +19,4 @@ var Product = sequelize.define('product', {
 
 Item.hasMany(Product);
 
-// (async () => {
-//   await sequelize.sync({ force: true });
-// })();
-
 module.exports = { Item, Product, sequelize };
