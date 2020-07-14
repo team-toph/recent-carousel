@@ -7,9 +7,12 @@ var pool = mariadb.createPool({
   database: 'SDC'
 });
 
-var find = function(id) {
+module.exports.find = function(id) {
   return pool.query(`SELECT * FROM products where itemId = ${id}`)
     .then((product) => {
+      if (product.length === 0) {
+        return 'No items found';
+      }
       return [{ id, product }];
     })
     .catch((err) => {
@@ -17,7 +20,7 @@ var find = function(id) {
     });
 };
 
-var create = function(item) {
+module.exports.create = function(item) {
   return pool.query(`INSERT INTO items VALUES (${item.id})`)
     .then(() => {
       item.product = item.product.map((product) => Object.values(product));
@@ -28,4 +31,16 @@ var create = function(item) {
     });
 };
 
-module.exports = { pool, find, create };
+module.exports.update = function(id, values) {
+  return;
+};
+
+module.exports.delete = function(id) {
+  return pool.query(`DELETE FROM products WHERE itemId=${id}`)
+    .then(() => {
+      return pool.query(`DELETE FROM items WHERE id=${id}`);
+    })
+    .catch((err) => {
+      console.log('error deleting item: ', err);
+    });
+};

@@ -41,13 +41,13 @@ app.get('/api/products', function(req, res) {
 //     });
 // });
 
-// app.delete('/api/products', (req, res) => {
-//   var id = req.query.id;
-//   View.deleteOne({id: id})
-//     .then((results) => {
-//       res.end();
-//     });
-// });
+app.delete('/api/products', (req, res) => {
+  var id = req.query.id;
+  db.delete(id)
+    .then((results) => {
+      res.end();
+    });
+});
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
