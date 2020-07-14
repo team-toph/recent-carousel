@@ -20,19 +20,35 @@ module.exports.find = function(id) {
     });
 };
 
+var addProducts = function(item) {
+  item.product = item.product.map((product) => {
+    var { reviewsCount, ratings, cost, imageUrl, name } = product;
+    return [reviewsCount, ratings, cost, imageUrl, name];
+  });
+  return pool.batch(`INSERT INTO
+    products(reviewsCount, ratings, cost, imageUrl, name, itemId)
+    VALUES (?, ?, ? ,?, ?, ${item.id})`, item.product);
+};
+
 module.exports.create = function(item) {
   return pool.query(`INSERT INTO items VALUES (${item.id})`)
     .then(() => {
-      item.product = item.product.map((product) => Object.values(product));
-      return pool.batch(`INSERT INTO products(reviewsCount, ratings, cost, imageUrl, name, itemId) VALUES (?, ?, ? ,?, ?, ${item.id})`, item.product);
+      return addProducts(item);
     })
     .catch((err) => {
       console.log('error adding item: ', err);
     });
 };
 
-module.exports.update = function(id, values) {
-  return;
+module.exports.update = function(id, item) {
+  return pool.query(`DELETE FROM products WHERE itemId=${id}`)
+    .then(() => {
+      item.id = id;
+      return addProducts(item);
+    })
+    .catch(() => {
+      console.log('error updating item: ', err);
+    });
 };
 
 module.exports.delete = function(id) {
