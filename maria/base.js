@@ -1,10 +1,4 @@
-var mariadb = require('mariadb');
-var pool = mariadb.createPool({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'SDC'
-});
+var { pool } = require('./index.js');
 var start = Date.now();
 pool.query('select * from products where itemId = 9778543')
   .then((results) => {

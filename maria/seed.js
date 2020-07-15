@@ -1,5 +1,5 @@
 var read = require('../readFile.js');
-var { sequelize, Item, Product } = require('./index.js');
+var { sequelize, Item, Product } = require('./indexSeed.js');
 
 var done = false;
 var start = Date.now();

@@ -1,7 +1,6 @@
 const express = require('express');
 
-const View = require('../database/View.js');
-const db = require('../database/index');
+const db = require('../maria/index.js');
 
 const app = express();
 const PORT = 3003;
@@ -18,16 +17,16 @@ app.use((req, res, next) => {
 
 app.post('/api/products', (req, res) => {
   req.body.id = req.query.id;
-  View.create(req.body)
+  db.create(req.body)
     .then((results) => {
-      res.status(201).json(results._doc);
+      res.status(201).json(results);
     });
 });
 
 app.get('/api/products', function(req, res) {
   const id = req.query.id;
   var start = Date.now();
-  View.find({id: id})
+  db.find(id)
     .then((data) => {
       console.log('Time to fetch from db: ', Date.now() - start);
       res.status(200).json(data);
@@ -36,15 +35,15 @@ app.get('/api/products', function(req, res) {
 
 app.put('/api/products', (req, res) => {
   var id = req.query.id;
-  View.findOneAndUpdate({id: id}, req.body, {new: true})
+  db.update(id, req.body)
     .then((results) => {
-      res.status(200).json(results._doc);
+      res.status(200).json(results);
     });
 });
 
 app.delete('/api/products', (req, res) => {
   var id = req.query.id;
-  View.deleteOne({id: id})
+  db.delete(id)
     .then((results) => {
       res.end();
     });
