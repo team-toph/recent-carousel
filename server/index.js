@@ -1,3 +1,4 @@
+require('newrelic');
 const express = require('express');
 
 const db = require('../maria/index.js');
@@ -25,10 +26,8 @@ app.post('/api/products', (req, res) => {
 
 app.get('/api/products', function(req, res) {
   const id = req.query.id;
-  var start = Date.now();
   db.find(id)
     .then((data) => {
-      console.log('Time to fetch from db: ', Date.now() - start);
       res.status(200).json(data);
     });
 });
