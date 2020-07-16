@@ -32,6 +32,7 @@
     "mongo-uri": "^0.1.2",
     "mongodb": "^3.5.9",
     "mongoose": "^4.13.20",
+    "newrelic": "^6.11.0",
     "node": "^14.4.0",
     "node-sass": "^4.14.1",
     "nodemon": "^2.0.4",
