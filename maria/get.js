@@ -1,4 +1,4 @@
-var { Item, Product, sequelize } = require('./index.js');
+var { Item, Product, sequelize } = require('./indexSeed.js');
 var start = Date.now();
 
 Product.findAll({ where: { itemId: 9777743 }})
