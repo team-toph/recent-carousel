@@ -16,36 +16,40 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post('/api/products', (req, res) => {
+app.post('/api/products', (req, res, next) => {
   req.body.id = req.query.id;
   db.create(req.body)
     .then((results) => {
       res.status(201).json(results);
-    });
+    })
+    .catch(next);
 });
 
-app.get('/api/products', function(req, res) {
+app.get('/api/products', function(req, res, next) {
   const id = req.query.id;
   db.find(id)
     .then((data) => {
       res.status(200).json(data);
-    });
+    })
+    .catch(next);
 });
 
-app.put('/api/products', (req, res) => {
+app.put('/api/products', (req, res, next) => {
   var id = req.query.id;
   db.update(id, req.body)
     .then((results) => {
       res.status(200).json(results);
-    });
+    })
+    .catch(next);
 });
 
-app.delete('/api/products', (req, res) => {
+app.delete('/api/products', (req, res, next) => {
   var id = req.query.id;
   db.delete(id)
     .then((results) => {
       res.end();
-    });
+    })
+    .catch(next);
 });
 
 app.listen(PORT, () => {
