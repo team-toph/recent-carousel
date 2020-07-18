@@ -5,7 +5,7 @@ pool.query('select * from products where itemId = 9778543')
     console.log('Time to complete first query: ', Date.now() - start);
     start = Date.now();
     var q = [];
-    for (let i = 0; i < 1000; i++) {
+    for (let i = 0; i < 10; i++) {
       q.push(pool.query(`select * from products where itemId = ${Math.floor(Math.random() * 10000000)}`));
     }
     Promise.all(q)
@@ -19,6 +19,6 @@ pool.query('select * from products where itemId = 9778543')
         }, 0));
       })
       .catch((err) => {
-        console.log('error');
+        console.log(err);
       });
   });
