@@ -1,7 +1,7 @@
 # Recent-Carousel Service
 
-#### Create/Post: /api/products/?id=:id
-- Creates entry in database with id based on url and contents based on attached JSON body.
+#### Create/Post: /api/products/
+- Creates entry in database at json object's id and contents based on attached JSON body.
 - Returns the created entry.
 
 #### Read/Get: /api/products/?id=:id

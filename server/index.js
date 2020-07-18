@@ -17,7 +17,6 @@ app.use((req, res, next) => {
 });
 
 app.post('/api/products', (req, res, next) => {
-  req.body.id = req.query.id;
   db.create(req.body)
     .then((results) => {
       res.status(201).json(results);

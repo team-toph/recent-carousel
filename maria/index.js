@@ -1,7 +1,7 @@
 var mariadb = require('mariadb');
 var config = require('./config.js');
 var pool = mariadb.createPool({
-  host: 'localhost',
+  host: '54.148.54.177',
   user: config.user,
   password: config.pass,
   database: 'SDC'

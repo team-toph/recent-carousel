@@ -18,8 +18,8 @@ const generateData = function(makeid) {
 
 var start = Date.now();
 var stream = fs.createWriteStream('./data.txt', {flags: 'a'});
-var count = 1;
-var max = 10000000;
+var count = 20000000;
+var max = count + 1000000;
 var write = () => {
   var ready = true;
   while (count <= max && ready) {
