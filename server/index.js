@@ -6,8 +6,17 @@ const db = require('../maria/index.js');
 const app = express();
 const PORT = 3003;
 
+
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+
+// app.use(express.static(__dirname + '/../dist'));
+
+app.get('*.js', (req, res, next) => {
+  req.url = req.url + '.gz';
+  res.set('Content-Encoding', 'gzip');
+  next();
+});
 
 app.use(express.static(__dirname + '/../dist'));
 

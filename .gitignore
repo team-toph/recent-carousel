@@ -22,9 +22,10 @@ coverage
 
 # Compiled Dirs (http://nodejs.org/api/addons.html)
 build/
-
+bundle.js.gz
 bundle.js
 data.txt
 data2.txt
 maria/config.js
 config.js
+loaderio*
